@@ -1,10 +1,12 @@
 from django.shortcuts import render
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated , IsAdminUser
 from rest_framework.response import Response
-from .models import Product
-from .serializers import ProductSerializer
-
-# Create your views here.
+from django.contrib.auth.models import User
+from ..models import Product
+from ..serializers import ProductSerializer
+from django.contrib.auth.hashers import make_password
+from rest_framework import status
 
 
 @api_view(['GET'])
